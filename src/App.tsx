@@ -53,6 +53,56 @@ function TodoApp() {
           Create Task
         </button>
       </form>
+
+      {/* Filters */}
+      <h2 className="text-2xl">Filter by:</h2>
+      <div className="my-5 flex gap-3">
+        <div className="flex flex-col">
+          <label htmlFor="">Priority</label>
+          <select
+            className="rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+            id="priority"
+            name="priority"
+          >
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="">Status</label>
+          <select
+            className="rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+            id="status"
+            name="status"
+          >
+            <option value="low">New</option>
+            <option value="medium">In progess</option>
+            <option value="High">Done</option>
+          </select>
+        </div>
+      </div>
+
+      <ul>
+        <li className="my-2 border-2 p-2">
+          <div className="flex items-center justify-between">
+            <div className="flex gap-20">
+              <p>{`Priority: ${"Low"}`}</p>
+              <p>{`Status: ${"New"}`}</p>
+            </div>
+            <button className="rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900">
+              Delete
+            </button>
+          </div>
+          <h3 className="text-2xl">{`Title: ${"Title"}`}</h3>
+          <p className="my-2">Description:</p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe ipsum iure facilis
+            officia deleniti reprehenderit! Iure saepe tempore quo quam molestiae vero quasi, labore
+            exercitationem reiciendis quidem qui. Commodi, doloremque.
+          </p>
+        </li>
+      </ul>
     </main>
   );
 }
