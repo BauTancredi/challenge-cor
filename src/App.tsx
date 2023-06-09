@@ -6,11 +6,13 @@ import { FilterCriteria, Todo } from "./types";
 import { TodoList } from "./components/TodoList";
 import Filter from "./components/Filter";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 2;
 
 function TodoApp() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<FilterCriteria>("all");
+
+  const filteredTodos = filter === "all" ? todos : todos.filter((todo) => todo.status === filter);
 
   const addTodo = (todo: Todo) => setTodos([...todos, todo]);
 
@@ -22,10 +24,9 @@ function TodoApp() {
   const changePriority = (id: number, priority: Todo["priority"]) =>
     setTodos(todos.map((todo) => (todo.id === id ? { ...todo, priority } : todo)));
 
+  // Pagination
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + ITEMS_PER_PAGE;
-
-  const filteredTodos = filter === "all" ? todos : todos.filter((todo) => todo.status === filter);
 
   const currentItems = filteredTodos.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(filteredTodos.length / ITEMS_PER_PAGE);
@@ -38,7 +39,10 @@ function TodoApp() {
   };
 
   return (
-    <main className="mx-auto my-0 border-2 p-2 md:w-8/12">
+    <main className="mx-auto my-0 p-2 md:w-8/12 lg:w-6/12">
+      <h1 className="relative mx-auto my-5 w-fit text-center text-3xl font-bold after:absolute after:left-0 after:top-5 after:-z-10 after:h-5  after:w-full after:bg-yellow-300 after:content-['']">
+        COR Todo List
+      </h1>
       <TodoForm addTodo={addTodo} />
       <Filter setFilter={setFilter} />
       <TodoList
@@ -46,14 +50,15 @@ function TodoApp() {
         changeStatus={changeStatus}
         deleteTodo={deleteTodo}
         filter={filter}
-        todos={currentItems}
+        filteredTodos={currentItems}
       />
       <ReactPaginate
         breakLabel="..."
-        nextLabel="next >"
+        className="my-5 flex items-center justify-center gap-5"
+        nextLabel="Next >"
         pageCount={pageCount}
         pageRangeDisplayed={ITEMS_PER_PAGE}
-        previousLabel="< previous"
+        previousLabel="< Previous"
         renderOnZeroPageCount={null}
         onPageChange={handlePageClick}
       />

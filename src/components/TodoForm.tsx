@@ -36,17 +36,17 @@ const TodoForm = ({ addTodo }: TodoFormProps) => {
       <div className="flex justify-between gap-2">
         <input
           required
-          className="rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+          className="w-80 rounded-lg  bg-[white] p-2.5 text-lg text-gray-900"
           id="name"
           name="title"
-          placeholder="Title"
+          placeholder="Title *"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <select
           required
-          className="grow rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+          className="grow rounded-lg  bg-[white] p-2.5 text-sm text-gray-900"
           id="priority"
           name="priority"
           value={priority}
@@ -57,7 +57,8 @@ const TodoForm = ({ addTodo }: TodoFormProps) => {
           <option value="high">High</option>
         </select>
         <select
-          className="grow rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+          required
+          className="grow rounded-lg bg-[white] p-2.5 text-sm text-gray-900"
           id="status"
           name="status"
           value={status}
@@ -69,18 +70,16 @@ const TodoForm = ({ addTodo }: TodoFormProps) => {
         </select>
       </div>
       <textarea
-        className="w-full grow rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+        required
+        className="w-full grow rounded-lg bg-[white] p-2.5 text-lg text-gray-900"
         id="description"
         name="description"
-        placeholder="Description"
+        placeholder="Description *"
         rows={5}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button
-        className="mx-auto w-36 rounded-lg border border-gray-300 bg-gray-50 p-2.5"
-        type="submit"
-      >
+      <button className="mx-auto w-36 rounded-full bg-yellow-300 p-2.5 font-bold" type="submit">
         Create Task
       </button>
     </form>

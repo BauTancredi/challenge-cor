@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+  background-color: #F8F8F1;
+}
+
+.disabled {
+  color: gray;
+}
+
+.selected{
+  padding: 10px;
+  border-radius: 15%;
+  background-color: #fde047;
+}
