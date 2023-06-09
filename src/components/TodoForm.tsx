@@ -20,7 +20,7 @@ const TodoForm = ({ addTodo }: TodoFormProps) => {
       description,
       priority,
       status,
-      id: Math.floor(Math.random() * 1000),
+      id: Math.floor(Math.random() * 1000), // We could use uuid package for this
     };
 
     addTodo(newTodo);

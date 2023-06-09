@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 
 import TodoForm from "./components/TodoForm";
@@ -9,10 +9,16 @@ import Filter from "./components/Filter";
 const ITEMS_PER_PAGE = 2;
 
 function TodoApp() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const initialTodos = JSON.parse(localStorage.getItem("todos") || "[]");
+  const [todos, setTodos] = useState<Todo[]>(initialTodos);
   const [filter, setFilter] = useState<FilterCriteria>("all");
 
   const filteredTodos = filter === "all" ? todos : todos.filter((todo) => todo.status === filter);
+
+  // Persist todos in localStorage
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (todo: Todo) => setTodos([...todos, todo]);
 
@@ -31,7 +37,6 @@ function TodoApp() {
   const currentItems = filteredTodos.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(filteredTodos.length / ITEMS_PER_PAGE);
 
-  // Invoke when user click to request another page.
   const handlePageClick = (event: any) => {
     const newOffset = (event.selected * ITEMS_PER_PAGE) % todos.length;
 
