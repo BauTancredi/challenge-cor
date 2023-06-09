@@ -43,19 +43,12 @@ Start the server
   npm run dev
 ```
 
-## Running Tests
-
-To run tests, run the following command
-
-```bash
-  npm run test
-```
-
 ## Next steps
 
 - Add a filter by priority
 - Edit all the fields of a todo
 - Persist the data in a database
+- Add tests
 
 ## License
 
