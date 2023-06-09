@@ -5,7 +5,7 @@ This repository is my approach to a coding challenge including React + Typescrip
 ## Requirements
 
 - Create a Todo App using React
-- The app should have pagination and a filter by status
+- The app should have a filter by status
 - Each todo should have a title, description, status and a priority
 - You shoud be able to modify the status adn the priority of a todo
 - You should be able to delete a todo
